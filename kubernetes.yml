@@ -1,0 +1,117 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2021-09-21T17:38:40Z"
+  labels:
+    app: pierdolnik
+  name: pierdolnik
+spec:
+  containers:
+  - command:
+    - /start
+    env:
+    - name: SERVER_PORT
+      value: "25566"
+    - name: MODS
+      value: https://github.com/EssentialsX/Essentials/releases/download/2.19.0/EssentialsX-2.19.0.jar,https://github.com/EssentialsX/Essentials/releases/download/2.19.0/EssentialsXChat-2.19.0.jar
+    - name: EULA
+      value: "TRUE"
+    - name: ONLINE_MODE
+      value: "FALSE"
+    - name: SNOOPER_ENABLED
+      value: "FALSE"
+    - name: SPAWN_PROTECTION
+      value: "0"
+    - name: VERSION
+      value: 1.17.1
+    - name: OVERRIDE_SERVER_PROPERTIES
+      value: "TRUE"
+    - name: ENABLE_WHITELIST
+      value: "TRUE"
+    - name: COPY_CONFIG_DEST
+      value: /data
+    - name: TYPE
+      value: PURPUR
+    - name: MEMORY
+      value: 1536M
+    - name: WORLD
+      value: /worlds/advancements
+    - name: SPIGET_RESOURCES
+      value: 28140,34315,85151
+    image: docker.io/itzg/minecraft-server:java16
+    name: paper
+    ports:
+    - containerPort: 25565
+      hostPort: 25565
+      protocol: TCP
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: true
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: false
+      seLinuxOptions: {}
+    volumeMounts:
+    - mountPath: /plugins
+      name: paper_plugins
+    - mountPath: /worlds
+      name: datapacks
+      readOnly: true
+    - mountPath: /data
+      name: paper
+    - mountPath: /config
+      name: paper_config
+    workingDir: /data
+  - command:
+    - /usr/bin/run-bungeecord.sh
+    env:
+    - name: MEMORY
+      value: 256M
+    - name: TYPE
+      value: VELOCITY
+    image: docker.io/itzg/bungeecord:latest
+    name: velocity
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: true
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: false
+      seLinuxOptions: {}
+    volumeMounts:
+    - mountPath: /config
+      name: velocity_config
+    workingDir: /server
+  dnsConfig: {}
+  restartPolicy: OnFailure
+  volumes:
+  - hostPath:
+      path: /var/pierdolnik/velocity_config
+      type: Directory
+    name: velocity_config
+  - hostPath:
+      path: /var/pierdolnik/paper_plugins
+      type: Directory
+    name: paper_plugins
+  - hostPath:
+      path: /var/pierdolnik/datapacks
+      type: Directory
+    name: datapacks
+  - hostPath:
+      path: /var/pierdolnik/paper
+      type: Directory
+    name: paper
+  - hostPath:
+      path: /var/pierdolnik/paper_config
+      type: Directory
+    name: paper_config
+status: {}
+

@@ -1,0 +1,4 @@
+
+ &#ff9eb5✿ Witaj, {PLAYER}&#ffffff!
+ &#ff9eb5✿ Graczy online:&#ffffff {ONLINE}.
+

@@ -1,0 +1,24 @@
+name: default
+permissions:
+- bukkit.command.tps
+- bukkit.command.tpsbar
+- essentials.chat.color
+- essentials.chat.format
+- essentials.chat.rgb
+- essentials.editsign
+- essentials.editsign.color
+- essentials.editsign.rgb
+- essentials.hat
+- essentials.home
+- essentials.me
+- essentials.motd
+- essentials.msg
+- essentials.msg.color
+- essentials.msg.format
+- essentials.msg.rgb
+- essentials.msg.url
+- essentials.sethome
+- essentials.tpa
+- essentials.tpacancel
+- essentials.tpaccept
+- essentials.tpahere

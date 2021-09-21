@@ -1,0 +1,8 @@
+ops-name-color: none
+
+custom-join-message: " &#ff9eb5✿ {PLAYER}&#ffffff joined."
+custom-quit-message: " &#ff9eb5✿ {PLAYER}&#ffffff left."
+
+chat:
+  format: '&#77dd77{DISPLAYNAME}:&#ffffff {MESSAGE}'
+
